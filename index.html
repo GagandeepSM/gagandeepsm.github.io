@@ -398,28 +398,31 @@
     .badge-row { display: flex; flex-wrap: wrap; gap: 10px; }
     .badge {
       display: inline-flex;
-      align-items: center; gap: 7px;
-      padding: 7px 15px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-size: 0.85rem;
-      color: var(--text);
+      align-items: center; gap: 8px;
+      padding: 8px 16px;
+      background: rgba(0,212,255,0.05);
+      border: 1px solid rgba(0,212,255,0.22);
+      border-radius: 8px;
+      font-size: 0.84rem;
+      color: #CCD6F6;
       font-weight: 500;
       transition: all 0.2s ease;
       cursor: default;
+      opacity: 1;
     }
     .badge-dot {
-      width: 6px; height: 6px;
+      width: 7px; height: 7px;
       border-radius: 50%;
       background: var(--primary);
+      box-shadow: 0 0 6px var(--primary);
       flex-shrink: 0;
     }
     .badge:hover {
       border-color: var(--primary);
       color: var(--primary);
-      background: var(--primary-glow);
+      background: rgba(0,212,255,0.12);
       transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,212,255,0.15);
     }
 
     /* ===== EXPERIENCE ===== */
@@ -852,24 +855,6 @@
         <div class="t-card">
           <div class="t-header">
             <div>
-              <div class="t-role">AI Engineer (Contract)</div>
-              <div class="t-company">Policy Solver &mdash; Remote</div>
-            </div>
-            <span class="t-period">Jan 2026 &ndash; Feb 2026</span>
-          </div>
-          <ul class="t-bullets">
-            <li>Architected end-to-end <strong>RAG pipelines</strong> for automated policy document generation — integrating vector-based semantic retrieval with an underlying LLM to produce context-aware, structured policy outputs at scale.</li>
-            <li>Designed multi-stage data orchestration workflows using <strong>Dagster</strong> and <strong>n8n</strong>, enabling reliable document ingestion, chunking, embedding, and retrieval across heterogeneous corpora with full lineage tracking.</li>
-            <li>Built a <strong>FastAPI</strong> inference layer with async request handling, streaming responses, and configurable retrieval strategies — similarity threshold, top-k, and MMR reranking.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="t-item">
-        <div class="t-dot"></div>
-        <div class="t-card">
-          <div class="t-header">
-            <div>
               <div class="t-role">Software Development Engineer</div>
               <div class="t-company">CAW Studios &mdash; Hyderabad, Telangana</div>
             </div>
@@ -903,6 +888,23 @@
         </div>
       </div>
 
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-card">
+          <div class="t-header">
+            <div>
+              <div class="t-role">Subject Matter Expert &mdash; Computer Science</div>
+              <div class="t-company">Chegg Inc &mdash; Remote</div>
+            </div>
+            <span class="t-period">Jun 2017 &ndash; May 2018</span>
+          </div>
+          <ul class="t-bullets">
+            <li>Resolved <strong>500+ CS and DSA queries</strong>, authoring detailed solutions on algorithms, data structures, system design, and full-stack development — achieving <strong>98%+ positive feedback</strong> from students.</li>
+            <li>Mentored students on backend architecture, database modeling, and competitive programming patterns across Java, Python, and C.</li>
+          </ul>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -929,52 +931,10 @@
         </p>
         <div class="p-tags">
           <span class="p-tag">AI / ML</span>
-          <span class="p-tag">Python</span>
           <span class="p-tag">FastAPI</span>
           <span class="p-tag">React</span>
-          <span class="p-tag">SaaS</span>
           <span class="p-tag">Speech Analysis</span>
-        </div>
-      </div>
-
-      <div class="p-card">
-        <div class="p-top">
-          <span class="p-icon">&#127970;</span>
-          <span></span>
-        </div>
-        <h3 class="p-name">Loan Origination Platform</h3>
-        <p class="p-desc">
-          Modular fintech platform with dealer management, full transaction lifecycle flows,
-          and integrations with 7+ third-party KYC, credit, and disbursement services.
-          Async orchestration engine reduced processing latency by 40%.
-        </p>
-        <div class="p-tags">
-          <span class="p-tag">NestJS</span>
-          <span class="p-tag">React</span>
-          <span class="p-tag">Kafka</span>
-          <span class="p-tag">GraphQL</span>
-          <span class="p-tag">Fintech</span>
-          <span class="p-tag">RBAC</span>
-        </div>
-      </div>
-
-      <div class="p-card">
-        <div class="p-top">
-          <span class="p-icon">&#129534;</span>
-          <span></span>
-        </div>
-        <h3 class="p-name">GST Compliance Engine</h3>
-        <p class="p-desc">
-          Real-time GST tax credit reconciliation engine for Cashflo achieving 99.99%
-          matching accuracy. Built with high-throughput data pipelines, real-time
-          validations, and fault-tolerant processing on Elastic Stack.
-        </p>
-        <div class="p-tags">
-          <span class="p-tag">Django</span>
-          <span class="p-tag">Python</span>
-          <span class="p-tag">Elasticsearch</span>
-          <span class="p-tag">Fintech</span>
-          <span class="p-tag">Data Pipelines</span>
+          <span class="p-tag">SaaS</span>
         </div>
       </div>
 
@@ -985,16 +945,98 @@
         </div>
         <h3 class="p-name">RAG Policy Document Generator</h3>
         <p class="p-desc">
-          Retrieval-Augmented Generation system for automated policy document drafting.
-          Uses vector search for context-aware knowledge retrieval with FastAPI serving
-          and Dagster for workflow orchestration.
+          End-to-end Retrieval-Augmented Generation system for automated policy drafting.
+          FAISS vector store with MMR reranking, streaming SSE responses, and multi-stage
+          orchestration via Dagster — full lineage tracking across heterogeneous corpora.
         </p>
         <div class="p-tags">
           <span class="p-tag">RAG</span>
           <span class="p-tag">FastAPI</span>
           <span class="p-tag">Dagster</span>
           <span class="p-tag">LLM</span>
-          <span class="p-tag">Vector Search</span>
+          <span class="p-tag">FAISS</span>
+          <span class="p-tag">n8n</span>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-top">
+          <span class="p-icon">&#128640;</span>
+          <span></span>
+        </div>
+        <h3 class="p-name">Async Event Microservice — Kafka Starter</h3>
+        <p class="p-desc">
+          Production-grade async FastAPI microservice with AIOKafka, idempotent producers,
+          manual-commit consumers, dead-letter queue routing, and async SQLAlchemy 2.0.
+          Full Confluent-compatible Docker setup with schema registry ready.
+        </p>
+        <div class="p-tags">
+          <span class="p-tag">FastAPI</span>
+          <span class="p-tag">Kafka</span>
+          <span class="p-tag">PostgreSQL</span>
+          <span class="p-tag">Pydantic v2</span>
+          <span class="p-tag">Docker</span>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-top">
+          <span class="p-icon">&#9881;</span>
+          <span></span>
+        </div>
+        <h3 class="p-name">GraphQL Auth Boilerplate — NestJS</h3>
+        <p class="p-desc">
+          Code-first NestJS + GraphQL boilerplate with Prisma ORM, JWT access/refresh token
+          rotation, bcrypt-hashed token storage, and RBAC guards — production patterns for
+          secure multi-role APIs with full Passport strategy coverage.
+        </p>
+        <div class="p-tags">
+          <span class="p-tag">NestJS</span>
+          <span class="p-tag">GraphQL</span>
+          <span class="p-tag">Prisma</span>
+          <span class="p-tag">JWT</span>
+          <span class="p-tag">RBAC</span>
+          <span class="p-tag">TypeScript</span>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-top">
+          <span class="p-icon">&#128202;</span>
+          <span></span>
+        </div>
+        <h3 class="p-name">Real-Time Notification Delivery Engine</h3>
+        <p class="p-desc">
+          Multi-channel notification platform (push, email, SMS, in-app) with per-tenant
+          routing rules, priority queues, deduplication, and delivery tracking.
+          Kafka-backed fanout with Redis rate limiting and idempotency guarantees.
+        </p>
+        <div class="p-tags">
+          <span class="p-tag">Kafka</span>
+          <span class="p-tag">Redis</span>
+          <span class="p-tag">NestJS</span>
+          <span class="p-tag">WebSockets</span>
+          <span class="p-tag">Multi-tenant</span>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-top">
+          <span class="p-icon">&#129302;</span>
+          <span></span>
+        </div>
+        <h3 class="p-name">LLM-Powered Code Review Agent</h3>
+        <p class="p-desc">
+          Agentic code review pipeline that ingests PR diffs, runs static analysis,
+          and generates contextual review comments via LLM with configurable severity rules.
+          GitHub webhook integration with async job queue and Slack notification dispatch.
+        </p>
+        <div class="p-tags">
+          <span class="p-tag">LLM</span>
+          <span class="p-tag">Python</span>
+          <span class="p-tag">FastAPI</span>
+          <span class="p-tag">GitHub Webhooks</span>
+          <span class="p-tag">AI Agents</span>
         </div>
       </div>
 
@@ -1125,12 +1167,12 @@
 
       // Skills
       gsap.from('.skill-cat', {
-        scrollTrigger: { trigger: '#skills', start: 'top 80%' },
+        scrollTrigger: { trigger: '#skills', start: 'top 85%', once: true },
         opacity: 0, y: 28, duration: 0.55, stagger: 0.09, ease: 'power3.out'
       });
       gsap.from('.badge', {
-        scrollTrigger: { trigger: '#skills', start: 'top 75%' },
-        opacity: 0, scale: 0.8, duration: 0.4, stagger: 0.022, ease: 'back.out(1.7)'
+        scrollTrigger: { trigger: '#skills', start: 'top 80%', once: true },
+        opacity: 0, scale: 0.85, duration: 0.35, stagger: 0.018, ease: 'back.out(1.4)'
       });
 
       // Experience
