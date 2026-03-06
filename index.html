@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gagandeep SM — Senior Software Engineer</title>
+  <title>Gagandeep - SSE</title>
   <meta name="description" content="Senior Software Engineer with 7+ years building scalable systems in Fintech, AI, and SaaS." />
-  <meta property="og:title" content="Gagandeep SM — Senior Software Engineer" />
+  <meta property="og:title" content="Gagandeep - SSE" />
   <meta property="og:description" content="7+ years building scalable backend systems and full-stack platforms for Fintech, AI, and SaaS." />
   <meta property="og:url" content="https://gagandeepsm.github.io" />
 
@@ -187,9 +187,36 @@
     #tsparticles {
       position: absolute; inset: 0; z-index: 0;
     }
-    .hero-content {
+    .hero-inner {
       position: relative; z-index: 2;
-      max-width: 860px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 60px;
+    }
+    .hero-content {
+      flex: 1;
+      max-width: 600px;
+    }
+    .hero-visual {
+      flex-shrink: 0;
+      width: 320px;
+      position: relative;
+    }
+    .hero-visual::before {
+      content: '';
+      position: absolute; inset: -2px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(0,212,255,0.35), transparent 60%, rgba(0,212,255,0.15));
+      z-index: -1;
+    }
+    .hero-visual img {
+      width: 100%;
+      border-radius: 20px;
+      display: block;
+      filter: saturate(1.1) contrast(1.05);
+      box-shadow: 0 0 60px rgba(0,212,255,0.12), 0 30px 60px rgba(0,0,0,0.4);
     }
     .hero-tag {
       font-family: var(--font-code);
@@ -510,57 +537,96 @@
     .t-bullets strong { color: var(--text); }
 
     /* ===== PROJECTS ===== */
+    @keyframes cardReveal {
+      from { opacity: 0; clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); transform: translateY(20px); }
+      to   { opacity: 1; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); transform: translateY(0); }
+    }
+    @keyframes scanLine {
+      0%   { top: 0; opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+    @keyframes cornerGlow {
+      0%, 100% { opacity: 0.4; }
+      50%       { opacity: 1; }
+    }
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-      gap: 22px;
+      gap: 24px;
     }
     .p-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px 28px;
-      backdrop-filter: blur(10px);
-      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+      background: linear-gradient(145deg, rgba(0,212,255,0.03) 0%, rgba(5,10,14,0.9) 100%);
+      border: 1px solid rgba(0,212,255,0.14);
+      border-radius: 14px;
+      padding: 30px 26px 26px;
       position: relative;
       overflow: hidden;
+      opacity: 0;
+      transform-style: preserve-3d;
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+      will-change: transform;
     }
+    .p-card.visible {
+      animation: cardReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    /* scan line on hover */
+    .p-card::before {
+      content: '';
+      position: absolute; left: 0; right: 0;
+      top: 0; height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(0,212,255,0.8) 50%, transparent 100%);
+      opacity: 0; z-index: 3;
+      pointer-events: none;
+    }
+    .p-card:hover::before {
+      animation: scanLine 0.9s ease forwards;
+    }
+    /* ambient corner glow */
     .p-card::after {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(circle at 20% 20%, rgba(0,212,255,0.06), transparent 60%);
+      border-radius: 14px;
+      background: radial-gradient(ellipse at 0% 0%, rgba(0,212,255,0.07) 0%, transparent 55%);
       opacity: 0;
-      transition: opacity 0.35s ease;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
     }
     .p-card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(0,212,255,0.3);
-      box-shadow: 0 32px 64px rgba(0,0,0,0.4), 0 0 30px rgba(0,212,255,0.04);
+      border-color: rgba(0,212,255,0.35);
+      box-shadow: 0 0 0 1px rgba(0,212,255,0.08),
+                  0 20px 60px rgba(0,0,0,0.5),
+                  0 0 40px rgba(0,212,255,0.06);
     }
     .p-card:hover::after { opacity: 1; }
-    .p-card.featured { border-color: rgba(0,212,255,0.18); background: rgba(0,212,255,0.025); }
+    .p-card.featured { border-color: rgba(0,212,255,0.25); }
+    .p-card.featured::after {
+      background: radial-gradient(ellipse at 0% 0%, rgba(0,212,255,0.1) 0%, transparent 55%);
+      opacity: 0.6;
+      animation: cornerGlow 3s ease-in-out infinite;
+    }
+    /* top row: link arrow only */
     .p-top {
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 18px;
+      justify-content: flex-end;
+      margin-bottom: 14px;
+      min-height: 20px;
     }
-    .p-icon { font-size: 1.9rem; }
     .p-ext {
-      font-size: 1.3rem;
+      font-size: 1.15rem;
       color: var(--text-muted);
       text-decoration: none;
       transition: color 0.2s, transform 0.2s;
       display: inline-block;
       position: relative; z-index: 1;
     }
-    .p-ext:hover { color: var(--primary); transform: translate(2px, -2px); }
+    .p-ext:hover { color: var(--primary); transform: translate(3px, -3px); }
     .p-name {
-      font-size: 1.18rem;
+      font-size: 1.12rem;
       font-weight: 600;
       color: #E6F1FF;
       margin-bottom: 10px;
       position: relative; z-index: 1;
+      letter-spacing: 0.2px;
     }
     .p-desc {
       font-size: 0.875rem;
@@ -572,10 +638,11 @@
     .p-tags { display: flex; flex-wrap: wrap; gap: 7px; position: relative; z-index: 1; }
     .p-tag {
       font-family: var(--font-code);
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       color: var(--primary);
       padding: 3px 9px;
       background: var(--primary-glow);
+      border: 1px solid rgba(0,212,255,0.15);
       border-radius: 4px;
     }
 
@@ -632,6 +699,8 @@
       nav.scrolled { padding: 12px 28px; }
       .nav-links, .nav-resume { display: none; }
       #hero, .section-wrap, #contact-section { padding-left: 28px; padding-right: 28px; }
+      .hero-inner { flex-direction: column; gap: 40px; }
+      .hero-visual { display: none; }
       .about-grid { grid-template-columns: 1fr; gap: 48px; }
       .projects-grid { grid-template-columns: 1fr; }
     }
@@ -665,20 +734,25 @@
   <!-- HERO -->
   <section id="hero">
     <div id="tsparticles"></div>
-    <div class="hero-content">
-      <p class="hero-tag" id="hTag">// Hi, my name is</p>
-      <h1 class="hero-name" id="hName">Gagandeep</h1>
-      <h2 class="hero-subtitle" id="hSub">
-        I build <span class="typed" id="typed"></span><span class="cursor-blink"></span>
-      </h2>
-      <p class="hero-desc" id="hDesc">
-        <strong>Senior Software Engineer</strong> with 7+ years designing and scaling
-        backend systems and full-stack platforms for <strong>Fintech, AI, and SaaS</strong>.
-        I turn complex distributed systems into reliable, high-performance products.
-      </p>
-      <div class="hero-cta" id="hCTA">
-        <a href="#projects" class="btn btn-primary">View My Work</a>
-        <a href="mailto:mankugs@hotmail.com" class="btn btn-ghost">Get In Touch</a>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <p class="hero-tag" id="hTag">// Hi, my name is</p>
+        <h1 class="hero-name" id="hName">Gagandeep</h1>
+        <h2 class="hero-subtitle" id="hSub">
+          I build <span class="typed" id="typed"></span><span class="cursor-blink"></span>
+        </h2>
+        <p class="hero-desc" id="hDesc">
+          <strong>Senior Software Engineer</strong> with 7+ years designing and scaling
+          backend systems and full-stack platforms for <strong>Fintech, AI, and SaaS</strong>.
+          I turn complex distributed systems into reliable, high-performance products.
+        </p>
+        <div class="hero-cta" id="hCTA">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="mailto:mankugs@hotmail.com" class="btn btn-ghost">Get In Touch</a>
+        </div>
+      </div>
+      <div class="hero-visual" id="hVisual">
+        <img src="https://user-images.githubusercontent.com/74038190/229223263-cf2e4b07-2615-4f87-9c38-e37600f8381a.gif" alt="Developer at work" loading="lazy" />
       </div>
     </div>
     <div class="hero-scroll-hint">
@@ -924,7 +998,6 @@
 
       <div class="p-card featured">
         <div class="p-top">
-          <span class="p-icon">&#127908;</span>
           <a href="https://www.speechef.com" target="_blank" rel="noopener" class="p-ext" title="Live Site">&#8599;</a>
         </div>
         <h3 class="p-name">Speechef</h3>
@@ -944,10 +1017,7 @@
       </div>
 
       <div class="p-card">
-        <div class="p-top">
-          <span class="p-icon">&#128196;</span>
-          <span></span>
-        </div>
+        <div class="p-top"></div>
         <h3 class="p-name">RAG Policy Document Generator</h3>
         <p class="p-desc">
           End-to-end Retrieval-Augmented Generation system for automated policy drafting.
@@ -965,10 +1035,7 @@
       </div>
 
       <div class="p-card">
-        <div class="p-top">
-          <span class="p-icon">&#128640;</span>
-          <span></span>
-        </div>
+        <div class="p-top"></div>
         <h3 class="p-name">Async Event Microservice — Kafka Starter</h3>
         <p class="p-desc">
           Production-grade async FastAPI microservice with AIOKafka, idempotent producers,
@@ -985,10 +1052,7 @@
       </div>
 
       <div class="p-card">
-        <div class="p-top">
-          <span class="p-icon">&#9881;</span>
-          <span></span>
-        </div>
+        <div class="p-top"></div>
         <h3 class="p-name">GraphQL Auth Boilerplate — NestJS</h3>
         <p class="p-desc">
           Code-first NestJS + GraphQL boilerplate with Prisma ORM, JWT access/refresh token
@@ -1006,10 +1070,7 @@
       </div>
 
       <div class="p-card">
-        <div class="p-top">
-          <span class="p-icon">&#128202;</span>
-          <span></span>
-        </div>
+        <div class="p-top"></div>
         <h3 class="p-name">Real-Time Notification Delivery Engine</h3>
         <p class="p-desc">
           Multi-channel notification platform (push, email, SMS, in-app) with per-tenant
@@ -1026,10 +1087,7 @@
       </div>
 
       <div class="p-card">
-        <div class="p-top">
-          <span class="p-icon">&#129302;</span>
-          <span></span>
-        </div>
+        <div class="p-top"></div>
         <h3 class="p-name">LLM-Powered Code Review Agent</h3>
         <p class="p-desc">
           Agentic code review pipeline that ingests PR diffs, runs static analysis,
@@ -1159,6 +1217,7 @@
       gsap.fromTo('#hCTA',  { y: 20 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', delay: 0.95,
         onComplete: type
       });
+      gsap.fromTo('#hVisual', { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 1, ease: 'power3.out', delay: 0.6 });
 
       // About
       gsap.from('.about-text', {
@@ -1181,11 +1240,32 @@
         });
       });
 
-      // Projects
-      document.querySelectorAll('.p-card').forEach((el, i) => {
-        gsap.from(el, {
-          scrollTrigger: { trigger: el, start: 'top 87%' },
-          opacity: 0, y: 40, duration: 0.7, ease: 'power3.out', delay: i * 0.08
+      // Projects — IntersectionObserver clip-path reveal + 3D tilt
+      const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const cards = entry.target.querySelectorAll('.p-card');
+            cards.forEach((card, i) => {
+              card.style.animationDelay = (i * 0.1) + 's';
+              card.classList.add('visible');
+            });
+            cardObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.05 });
+      const grid = document.querySelector('.projects-grid');
+      if (grid) cardObserver.observe(grid);
+
+      // 3D tilt on project cards
+      document.querySelectorAll('.p-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const r = card.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width  - 0.5;
+          const y = (e.clientY - r.top)  / r.height - 0.5;
+          card.style.transform = `perspective(800px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) translateZ(8px)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) translateZ(0)';
         });
       });
 
