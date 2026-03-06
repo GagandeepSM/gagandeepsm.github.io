@@ -646,6 +646,78 @@
       border-radius: 4px;
     }
 
+    /* ===== WHAT I BUILD ===== */
+    .wib-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .wib-card {
+      padding: 28px 24px;
+      background: rgba(0,212,255,0.03);
+      border: 1px solid rgba(0,212,255,0.12);
+      border-radius: 14px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .wib-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .wib-card:hover { border-color: rgba(0,212,255,0.32); transform: translateY(-5px); box-shadow: 0 16px 48px rgba(0,0,0,0.35), 0 0 24px rgba(0,212,255,0.06); }
+    .wib-card:hover::before { opacity: 1; }
+    .wib-num { font-family: var(--font-code); font-size: 0.7rem; color: var(--primary); margin-bottom: 14px; letter-spacing: 2px; }
+    .wib-title { font-size: 1.02rem; font-weight: 600; color: #E6F1FF; margin-bottom: 10px; }
+    .wib-desc { font-size: 0.845rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+    .wib-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+    .wib-pill { font-family: var(--font-code); font-size: 0.67rem; color: var(--primary); padding: 2px 8px; background: var(--primary-glow); border-radius: 4px; }
+
+    /* ===== TECH ICON CHIPS ===== */
+    .tech-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+    .tech-chip {
+      display: flex; flex-direction: column; align-items: center; gap: 7px;
+      width: 76px; padding: 14px 8px 12px;
+      background: rgba(0,212,255,0.03);
+      border: 1px solid rgba(0,212,255,0.12);
+      border-radius: 12px;
+      cursor: default;
+      transition: all 0.22s ease;
+    }
+    .tech-chip img { width: 38px; height: 38px; display: block; }
+    .tech-chip span { font-size: 0.63rem; color: var(--text-muted); text-align: center; font-family: var(--font-code); line-height: 1.3; }
+    .tech-chip:hover {
+      border-color: rgba(0,212,255,0.55);
+      box-shadow: 0 0 20px rgba(0,212,255,0.22), inset 0 0 8px rgba(0,212,255,0.05);
+      background: rgba(0,212,255,0.08);
+      transform: translateY(-4px) scale(1.06);
+    }
+    .tech-chip:hover span { color: #E6F1FF; }
+    /* text pill for tools without skillicons */
+    .tech-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 13px;
+      background: rgba(0,212,255,0.03);
+      border: 1px solid rgba(0,212,255,0.12);
+      border-radius: 8px;
+      font-size: 0.8rem; color: var(--text-muted); font-weight: 500;
+      cursor: default; transition: all 0.22s ease;
+    }
+    .tech-pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--primary); box-shadow: 0 0 5px var(--primary); flex-shrink: 0; }
+    .tech-pill:hover { border-color: rgba(0,212,255,0.5); box-shadow: 0 0 14px rgba(0,212,255,0.18); color: #E6F1FF; }
+
+    /* ===== COMPANY BADGE ===== */
+    .co-badge {
+      width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.5px;
+      margin-right: 2px;
+    }
+
     /* ===== CONTACT ===== */
     #contact-section {
       text-align: center;
@@ -723,7 +795,8 @@
     <a href="#hero" class="nav-logo">&lt;<span>GS</span>/&gt;</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
+      <li><a href="#wib">Builds</a></li>
+      <li><a href="#skills">Stack</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#contact-section">Contact</a></li>
@@ -816,85 +889,120 @@
     </div>
   </div>
 
+  <!-- WHAT I BUILD -->
+  <div class="section-wrap" id="wib" style="padding-top:0">
+    <div class="section-head">
+      <span class="section-num">02.</span>
+      <h2 class="section-title">What I Build</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="wib-grid">
+      <div class="wib-card">
+        <div class="wib-num">// 01</div>
+        <h3 class="wib-title">Distributed Systems</h3>
+        <p class="wib-desc">Event-driven microservice architectures, Kafka pipelines with dead-letter queues, GraphQL federation, state machines, and zero-downtime migrations at scale.</p>
+        <div class="wib-pills"><span class="wib-pill">Kafka</span><span class="wib-pill">GraphQL</span><span class="wib-pill">CQRS</span><span class="wib-pill">Confluent</span></div>
+      </div>
+      <div class="wib-card">
+        <div class="wib-num">// 02</div>
+        <h3 class="wib-title">AI &amp; RAG Pipelines</h3>
+        <p class="wib-desc">End-to-end RAG systems with vector stores, MMR reranking, streaming SSE, Dagster orchestration, NLP inference optimization, and LLM-integrated APIs.</p>
+        <div class="wib-pills"><span class="wib-pill">LLM</span><span class="wib-pill">FAISS</span><span class="wib-pill">Dagster</span><span class="wib-pill">FastAPI</span></div>
+      </div>
+      <div class="wib-card">
+        <div class="wib-num">// 03</div>
+        <h3 class="wib-title">Fintech Infrastructure</h3>
+        <p class="wib-desc">Loan origination systems, KYC/credit pipelines, GST compliance engines, multi-GSTIN reconciliation, and real-time anomaly flagging across B2B financial workflows.</p>
+        <div class="wib-pills"><span class="wib-pill">NestJS</span><span class="wib-pill">Prisma</span><span class="wib-pill">SQL Server</span><span class="wib-pill">RBAC</span></div>
+      </div>
+      <div class="wib-card">
+        <div class="wib-num">// 04</div>
+        <h3 class="wib-title">Full-Stack Products</h3>
+        <p class="wib-desc">Production SaaS platforms, multi-tenant API architectures with OAuth2/JWT, Redis caching, SSR-optimised React frontends, and CI/CD on AWS.</p>
+        <div class="wib-pills"><span class="wib-pill">React</span><span class="wib-pill">Django</span><span class="wib-pill">PostgreSQL</span><span class="wib-pill">AWS</span></div>
+      </div>
+    </div>
+  </div>
+
   <!-- SKILLS -->
   <div class="section-wrap" id="skills" style="padding-top:0">
     <div class="section-head">
-      <span class="section-num">02.</span>
+      <span class="section-num">03.</span>
       <h2 class="section-title">Tech Stack</h2>
       <div class="section-rule"></div>
     </div>
     <div class="skills-wrap">
       <div class="skill-cat">
         <span class="skill-cat-label">Languages</span>
-        <div class="badge-row">
-          <span class="badge"><span class="badge-dot"></span>Python</span>
-          <span class="badge"><span class="badge-dot"></span>TypeScript</span>
-          <span class="badge"><span class="badge-dot"></span>JavaScript</span>
-          <span class="badge"><span class="badge-dot"></span>Java</span>
-          <span class="badge"><span class="badge-dot"></span>SQL</span>
-          <span class="badge"><span class="badge-dot"></span>C</span>
+        <div class="tech-grid">
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=python&theme=dark" alt="Python"/><span>Python</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=ts&theme=dark" alt="TypeScript"/><span>TypeScript</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=js&theme=dark" alt="JavaScript"/><span>JavaScript</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=java&theme=dark" alt="Java"/><span>Java</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=c&theme=dark" alt="C"/><span>C</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=mysql&theme=dark" alt="SQL"/><span>SQL</span></div>
         </div>
       </div>
       <div class="skill-cat">
         <span class="skill-cat-label">Frameworks &amp; Libraries</span>
-        <div class="badge-row">
-          <span class="badge"><span class="badge-dot"></span>Django</span>
-          <span class="badge"><span class="badge-dot"></span>FastAPI</span>
-          <span class="badge"><span class="badge-dot"></span>NestJS</span>
-          <span class="badge"><span class="badge-dot"></span>Flask</span>
-          <span class="badge"><span class="badge-dot"></span>React</span>
-          <span class="badge"><span class="badge-dot"></span>Node.js</span>
-          <span class="badge"><span class="badge-dot"></span>DRF</span>
-          <span class="badge"><span class="badge-dot"></span>Celery</span>
+        <div class="tech-grid">
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=django&theme=dark" alt="Django"/><span>Django</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=fastapi&theme=dark" alt="FastAPI"/><span>FastAPI</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=nestjs&theme=dark" alt="NestJS"/><span>NestJS</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=flask&theme=dark" alt="Flask"/><span>Flask</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=react&theme=dark" alt="React"/><span>React</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=nodejs&theme=dark" alt="Node.js"/><span>Node.js</span></div>
+          <span class="tech-pill"><span class="tech-pill-dot"></span>DRF</span>
+          <span class="tech-pill"><span class="tech-pill-dot"></span>Celery</span>
         </div>
       </div>
       <div class="skill-cat">
-        <span class="skill-cat-label">Databases</span>
-        <div class="badge-row">
-          <span class="badge"><span class="badge-dot"></span>PostgreSQL</span>
-          <span class="badge"><span class="badge-dot"></span>MongoDB</span>
-          <span class="badge"><span class="badge-dot"></span>Redis</span>
-          <span class="badge"><span class="badge-dot"></span>MySQL</span>
-          <span class="badge"><span class="badge-dot"></span>SQL Server</span>
-          <span class="badge"><span class="badge-dot"></span>Supabase</span>
-          <span class="badge"><span class="badge-dot"></span>Neon</span>
-          <span class="badge"><span class="badge-dot"></span>Upstash</span>
+        <span class="skill-cat-label">Databases &amp; Storage</span>
+        <div class="tech-grid">
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=postgres&theme=dark" alt="PostgreSQL"/><span>PostgreSQL</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=mongodb&theme=dark" alt="MongoDB"/><span>MongoDB</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=redis&theme=dark" alt="Redis"/><span>Redis</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=mysql&theme=dark" alt="MySQL"/><span>MySQL</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=supabase&theme=dark" alt="Supabase"/><span>Supabase</span></div>
+          <span class="tech-pill"><span class="tech-pill-dot"></span>SQL Server</span>
+          <span class="tech-pill"><span class="tech-pill-dot"></span>Neon</span>
+          <span class="tech-pill"><span class="tech-pill-dot"></span>Upstash</span>
         </div>
       </div>
       <div class="skill-cat">
-        <span class="skill-cat-label">Cloud, DevOps &amp; Observability</span>
-        <div class="badge-row">
-          <span class="badge"><span class="badge-dot"></span>AWS (EC2, S3, RDS, Lambda)</span>
-          <span class="badge"><span class="badge-dot"></span>Docker</span>
-          <span class="badge"><span class="badge-dot"></span>Vercel</span>
-          <span class="badge"><span class="badge-dot"></span>Cloudflare Workers</span>
-          <span class="badge"><span class="badge-dot"></span>Apache Kafka</span>
-          <span class="badge"><span class="badge-dot"></span>Confluent Cloud</span>
-          <span class="badge"><span class="badge-dot"></span>GraphQL</span>
-          <span class="badge"><span class="badge-dot"></span>Jenkins</span>
-          <span class="badge"><span class="badge-dot"></span>Elasticsearch</span>
-          <span class="badge"><span class="badge-dot"></span>New Relic</span>
-          <span class="badge"><span class="badge-dot"></span>Kibana</span>
+        <span class="skill-cat-label">Cloud &amp; DevOps</span>
+        <div class="tech-grid">
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=aws&theme=dark" alt="AWS"/><span>AWS</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=docker&theme=dark" alt="Docker"/><span>Docker</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=vercel&theme=dark" alt="Vercel"/><span>Vercel</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=cloudflare&theme=dark" alt="Cloudflare"/><span>Cloudflare</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=kafka&theme=dark" alt="Kafka"/><span>Kafka</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=graphql&theme=dark" alt="GraphQL"/><span>GraphQL</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=jenkins&theme=dark" alt="Jenkins"/><span>Jenkins</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=elasticsearch&theme=dark" alt="Elastic"/><span>Elastic</span></div>
+          <span class="tech-pill"><span class="tech-pill-dot"></span>Confluent</span>
+          <span class="tech-pill"><span class="tech-pill-dot"></span>New Relic</span>
+          <span class="tech-pill"><span class="tech-pill-dot"></span>Prisma</span>
         </div>
       </div>
       <div class="skill-cat">
         <span class="skill-cat-label">Testing &amp; Security</span>
-        <div class="badge-row">
-          <span class="badge"><span class="badge-dot"></span>Pytest</span>
-          <span class="badge"><span class="badge-dot"></span>Jest</span>
-          <span class="badge"><span class="badge-dot"></span>Postman</span>
-          <span class="badge"><span class="badge-dot"></span>OAuth2</span>
-          <span class="badge"><span class="badge-dot"></span>JWT</span>
-          <span class="badge"><span class="badge-dot"></span>RBAC</span>
+        <div class="tech-grid">
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=pytest&theme=dark" alt="Pytest"/><span>Pytest</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=jest&theme=dark" alt="Jest"/><span>Jest</span></div>
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=postman&theme=dark" alt="Postman"/><span>Postman</span></div>
+          <span class="tech-pill"><span class="tech-pill-dot"></span>OAuth2</span>
+          <span class="tech-pill"><span class="tech-pill-dot"></span>JWT</span>
+          <span class="tech-pill"><span class="tech-pill-dot"></span>RBAC</span>
         </div>
       </div>
       <div class="skill-cat">
         <span class="skill-cat-label">AI Developer Tools</span>
-        <div class="badge-row">
-          <span class="badge"><span class="badge-dot"></span>Claude Code</span>
-          <span class="badge"><span class="badge-dot"></span>GitHub Copilot / Codex</span>
-          <span class="badge"><span class="badge-dot"></span>Amazon Q</span>
-          <span class="badge"><span class="badge-dot"></span>Kiro</span>
+        <div class="tech-grid">
+          <div class="tech-chip"><img src="https://skillicons.dev/icons?i=github&theme=dark" alt="Copilot"/><span>Copilot</span></div>
+          <span class="tech-pill"><span class="tech-pill-dot"></span>Claude Code</span>
+          <span class="tech-pill"><span class="tech-pill-dot"></span>Amazon Q</span>
+          <span class="tech-pill"><span class="tech-pill-dot"></span>Kiro</span>
         </div>
       </div>
     </div>
@@ -903,7 +1011,7 @@
   <!-- EXPERIENCE -->
   <div class="section-wrap" id="experience" style="padding-top:0">
     <div class="section-head">
-      <span class="section-num">03.</span>
+      <span class="section-num">04.</span>
       <h2 class="section-title">Experience</h2>
       <div class="section-rule"></div>
     </div>
@@ -913,6 +1021,7 @@
         <div class="t-dot"></div>
         <div class="t-card">
           <div class="t-header">
+            <div class="co-badge" style="background:rgba(0,48,135,0.35);color:#5b9bd5;border:1px solid rgba(91,155,213,0.3)">FF</div>
             <div>
               <div class="t-role">Senior Software Development Engineer</div>
               <div class="t-company">Foundation Finance Company LLC &mdash; Remote</div>
@@ -933,6 +1042,7 @@
         <div class="t-dot"></div>
         <div class="t-card">
           <div class="t-header">
+            <div class="co-badge" style="background:rgba(108,52,131,0.35);color:#c084fc;border:1px solid rgba(192,132,252,0.3)">CS</div>
             <div>
               <div class="t-role">Software Development Engineer</div>
               <div class="t-company">CAW Studios &mdash; Hyderabad, Telangana</div>
@@ -952,6 +1062,7 @@
         <div class="t-dot"></div>
         <div class="t-card">
           <div class="t-header">
+            <div class="co-badge" style="background:rgba(136,146,176,0.15);color:#8892B0;border:1px solid rgba(136,146,176,0.25)">&lt;/&gt;</div>
             <div>
               <div class="t-role">Software Engineer</div>
               <div class="t-company">Contract &mdash; Remote</div>
@@ -971,6 +1082,7 @@
         <div class="t-dot"></div>
         <div class="t-card">
           <div class="t-header">
+            <div class="co-badge" style="background:rgba(255,90,0,0.2);color:#ff7a30;border:1px solid rgba(255,90,0,0.3)">CH</div>
             <div>
               <div class="t-role">Subject Matter Expert &mdash; Computer Science</div>
               <div class="t-company">Chegg Inc &mdash; Remote</div>
@@ -990,7 +1102,7 @@
   <!-- PROJECTS -->
   <div class="section-wrap" id="projects" style="padding-top:0">
     <div class="section-head">
-      <span class="section-num">04.</span>
+      <span class="section-num">05.</span>
       <h2 class="section-title">Projects</h2>
       <div class="section-rule"></div>
     </div>
@@ -1109,7 +1221,7 @@
   <!-- CONTACT -->
   <div id="contact-section">
     <div class="contact-wrap">
-      <p class="contact-tag">// 05. what's next?</p>
+      <p class="contact-tag">// 06. what's next?</p>
       <h2 class="contact-title">Let's Build Something.</h2>
       <p class="contact-desc">
         Open to senior engineering roles, technical consulting, and interesting product
@@ -1230,6 +1342,12 @@
       });
 
       // Skills
+      // What I Build
+      gsap.from('.wib-card', {
+        scrollTrigger: { trigger: '#wib', start: 'top 82%', once: true },
+        opacity: 0, y: 30, duration: 0.6, stagger: 0.12, ease: 'power3.out'
+      });
+
       // Skills section uses CSS animation — no GSAP needed
 
       // Experience
